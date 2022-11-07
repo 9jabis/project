@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1 align="center">Front-end 과제</h1>
+    <h3>1학년</h3>
+   
+    <script>
+        var count = 1; // 전역변수
+        
+        function addRow() {
+           var dynamicTable = document.getElementById('1st');
+           var newRow = dynamicTable.insertRow(2);
+           var cell1 = newRow.insertCell();
+           var cell2 = newRow.insertCell();
+           var cell3 = newRow.insertCell();
+           var cell4 = newRow.insertCell();
+           var cell5 = newRow.insertCell();
+           var cell6 = newRow.insertCell();
+           var cell7 = newRow.insertCell();
+           var cell8 = newRow.insertCell();
+           var cell9 = newRow.insertCell();
+           var cell10 = newRow.insertCell();
+           var cell11 = newRow.insertCell();
+
+           cell1.innerHTML = '<select name="esu" id="esu"/><option value=major>전공</option><option value=major>교양</option>';
+           cell2.innerHTML ='<select name="pilsu" id="pilsu"/><option value=major>필수</option><option value=major>선택</option>';
+           cell3.innerHTML='<input type="text" name = "subject"/>';
+           cell4.innerHTML='<input type="text" name = "hak"/>';
+           cell5.innerHTML='<input type="text" name = "attend"/>';
+           cell6.innerHTML='<input type="text" name = "homework"/>';
+           cell7.innerHTML='<input type="text" name = "midterm"/>';
+           cell8.innerHTML='<input type="text" name = "final"/>';
+           cell9.innerHTML='<input type="text" name = "total"/>';
+           cell10.innerHTML='<input type="text" name = "avg"/>';
+           cell11.innerHTML='<input type="text" name = "grade"/>';
+         
+           count++;
+
+           function deleteRow() {
+            var table = document.getElementById('dynamic_table');
+            var checkboxArray = document.getElementsByName('checkboxObj');
+      
+            for (var i = checkboxArray.length-1; i>=0; i--) {
+            var check = checkboxArray[i].checked;
+         
+            if (check) {
+                table.deleteRow(i);
+             }
+            }
+         }
+        }
+    </script>
+    <input type="button" value="추가" onClick="addRow();"/>
+    <input type="button" value="삭제" onClick="deleteRow();"/>
+    <table border="1" id="1st">
+        <thead>
+        <tr align="center">
+            <td>이수</td>
+            <td>필수</td>
+            <td>과목명</td>
+            <td >학점</td>
+            <td>출석점수</td>
+            <td>과제점수</td>
+            <td>중간고사</td>
+            <td>기말고사</td>
+            <td>총점</td>
+            <td>평균</td>
+            <td>성적</td>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr align="center" >
+                <td><select name="esu" id="esu">
+                    <option value="major">전공</option>
+                    <option value="minor">교양</option>
+                </select></td>
+                <td><select name="pilsu" id="pilsu">
+                    <option value="must">필수</option>
+                    <option value="choice">선택</option>
+                </select></td>
+                <td><input type="text" name="subject" id="subject"></td>
+                <td><input type="text" name="hak" id="hak"></td>
+                <td><input type="text" name="attend" id=""></td>
+                <td><input type="text" name="homework" id="homework"></td>
+                <td><input type="text" name="midterm" id="midterm"></td>
+                <td><input type="text" name="final" id="final"></td>
+                <td><input type="text" name="total" id="total"></td>
+                <td><input type="text" name="avg" id="avg"></td>
+                <td><input type="text" name="grade" id="grade"></td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+                <tr align="center">
+                    <td colspan="3" align="center">합계</td>
+                    <td>
+                        <script>
+                            
+                        </script>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tfoot>
+        </table>
+</body>
+</html>
