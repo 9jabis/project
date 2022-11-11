@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>  
+        table { border-collapse:collapse; }  
+        th, td { border:1px solid gray; }
+        </style>
+        
+        <button onclick="add_row()">행 추가하기</button>
+        <button onclick="delete_row()">행 삭제하기</button>
+        <hr>
+        <table>
+          <thead>
+            <th>item</th>
+            <th>datetime</th>
+          </thead>
+          <tbody id="my-tbody"></tbody>
+        </table>
+        
+        <script>
+          function add_row() {
+            var oRow = grade_1.insertRow();
+
+oRow.onmouseover=function(){grade_1.clickedRowIndex=this.rowIndex};
+
+var oCell0 = oRow.insertCell();
+
+var oCell1 = oRow.insertCell();
+
+var oCell2 = oRow.insertCell();
+
+var oCell3 = oRow.insertCell();
+
+var oCell5 = oRow.insertCell();
+
+var oCell6 = oRow.insertCell();
+
+var oCell7 = oRow.insertCell();
+
+var oCell8 = oRow.insertCell();
+
+var oCell9 = oRow.insertCell();
+
+var oCell10 = oRow.insertCell();
+
+var oCell11 = oRow.insertCell();
+
+var oCell12= oRow.insertCell();
+ 
+var oCell13= oRow.insertCell();
+ 
+oCell0.innerHTML = oCell6.innerHTML = '<input type=button name=grade_1_delRow value=" 삭제 " onClick="delRow()">';
+
+oCell1.innerHTML = '<select name="esu" id="esu"/><option value=major>전공</option><option value=major>교양</option>';
+
+oCell2.innerHTML = '<select name="pilsu" id="pilsu"/><option value=major>필수</option><option value=major>선택</option>';
+
+oCell3.innerHTML = '<input type="text" name = "subject"/>';
+
+oCell5.innerHTML = '<input type="text" name = "hak" id="hak"/>';
+
+oCell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
+oCell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
+
+oCell8.innerHTML='<input type="text" name = "midterm" id="midterm"/>';
+
+oCell9.innerHTML='<input type="text" name = "final" id="final"/>';
+           
+oCell10.innerHTML='<input type="text" name = "total" id="total"/>';
+           
+oCell11.innerHTML='<input type="text" name = "avg" id="avg"/>';
+           
+oCell12.innerHTML='<input type="text" name = "grade" id="grade"/>';
+         
+
+          }
+        
+          function delete_row() {
+            var my_tbody = document.getElementById('my-tbody');
+            if (my_tbody.rows.length < 1) return;
+            // my_tbody.deleteRow(0); // 상단부터 삭제
+            my_tbody.deleteRow( my_tbody.rows.cl ); // 하단부터 삭제
+          }
+        </script>
+        
+</head>
+<body>
+    
+</body>
+</html>
