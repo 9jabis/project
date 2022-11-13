@@ -9,7 +9,14 @@
 <script>
 
 var i = 0;
-
+hakjum = [];
+attendScore = [];
+subjectScore = [];
+midtermScore = [];
+finalexamScore = [];
+totalScore = [];
+avgScore = [];
+gradeScore = [];
 
 function addRow()
 
@@ -51,20 +58,20 @@ oCell2.innerHTML = '<select name="pilsu" id="pilsu"/><option value=major>필수<
 
 oCell3.innerHTML = '<input type="text" name = "subject"/>';
 
-oCell5.innerHTML = '<input type="text" name = "hak" id="hak"/>';
+oCell5.innerHTML = '<input type="text" name = "hak" onkeyup="cal(this)" id="hak"/>';
 
-oCell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
-oCell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
+oCell6.innerHTML='<input type="text" name = "attend" id="attend" onkeyup="cal(this)/>';
+oCell7.innerHTML='<input type="text" name = "homework"  onkeyup="cal(this) id="homework"/>';
 
-oCell8.innerHTML='<input type="text" name = "midterm" id="midterm"/>';
+oCell8.innerHTML='<input type="text" name = "midterm" onkeyup="cal(this)" id="midterm"/ >';
 
-oCell9.innerHTML='<input type="text" name = "final" id="final"/>';
+oCell9.innerHTML='<input type="text" name = "final" id="final" onkeyup="cal(this)/>';
            
-oCell10.innerHTML='<input type="text" name = "total" id="total"/>';
+oCell10.innerHTML='<input type="text" name = "total" id="total" onkeyup="cal(this)/>';
            
-oCell11.innerHTML='<input type="text" name = "avg" id="avg"/>';
+oCell11.innerHTML='<input type="text" name = "avg" id="avg" onkeyup="cal(this)/>';
            
-oCell12.innerHTML='<input type="text" name = "grade" id="grade"/>';
+oCell12.innerHTML='<input type="text" name = "grade" id="grade" onkeyup="cal(this)/>';
          
 
 }
@@ -88,7 +95,23 @@ i++;
 
 }
 
- 
+ function cal(obj){
+    var hakjum = document.getElementsByName('hak');
+    var attendScore = document.getElementsByName('attend');
+    var subjectScore = document.getElementByName('subject');
+    var midtermScore = document.getElementByName('midterm');
+    var finalexamScore = document.getElementByName('final');
+    var totalScore = document.getElementByName('total');
+    var avgScore = document.getElementByName('avg');
+    var gradeScore = document.getElementByName('grade');
+
+    for(var i=0; i<hakjum.length; i++){
+        var sum = 0;
+        sum += hakjum[i];
+        return sum;
+    }
+    
+ }
 </script>
 
 </head>
