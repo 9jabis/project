@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>  
-        table { border-collapse:collapse; }  
-        th, td { border:1px solid gray; }
-        </style>
-        
-        <button onclick="add_row()">행 추가하기</button>
-        <button onclick="delete_row()">행 삭제하기</button>
-        <hr>
-        <table>
-          <thead>
-            <th>item</th>
-            <th>datetime</th>
-          </thead>
-          <tbody id="my-tbody"></tbody>
-        </table>
-        
-        <script>
-          function add_row() {
-            var oRow = grade_1.insertRow();
 
-oRow.onmouseover=function(){grade_1.clickedRowIndex=this.rowIndex};
+<title>sjisbmoc</title>
 
-var oCell0 = oRow.insertCell();
+<script style='text/javascript'>
+
+text1 =[];
+
+text2 =[];
+
+result =[];
+
+var i = 0;
+
+////////////// 한칸 더 만들기////////////
+
+function addRow()
+
+{
+
+var oRow = dyntbl1.insertRow();
+
+oRow.onmouseover=function(){dyntbl1.clickedRowIndex=this.rowIndex};
+
+ 
 
 var oCell1 = oRow.insertCell();
 
@@ -39,56 +38,140 @@ var oCell5 = oRow.insertCell();
 
 var oCell6 = oRow.insertCell();
 
-var oCell7 = oRow.insertCell();
-
-var oCell8 = oRow.insertCell();
-
-var oCell9 = oRow.insertCell();
-
-var oCell10 = oRow.insertCell();
-
-var oCell11 = oRow.insertCell();
-
-var oCell12= oRow.insertCell();
  
-var oCell13= oRow.insertCell();
+
+oCell1.innerHTML = '<input type=text id="comment" name="comment" size="15" maxlength="12">';
+
+oCell2.innerHTML = '<input type=text name="text1" onkeyup="cal(this)" style=ime-mode:disabled>';
+
+oCell3.innerHTML = '<input type=text name="text2" onkeyup="cal(this)" style=ime-mode:disabled>';
+
+oCell5.innerHTML = '<input type=text name=result>';
+
+oCell6.innerHTML = '<input type=button name=dyntbl1_delRow value=" X " onClick="delRow()">';
+
+}
+
  
-oCell0.innerHTML = oCell6.innerHTML = '<input type=button name=grade_1_delRow value=" 삭제 " onClick="delRow()">';
 
-oCell1.innerHTML = '<select name="esu" id="esu"/><option value=major>전공</option><option value=major>교양</option>';
+//////////// 한칸 지우기//////
 
-oCell2.innerHTML = '<select name="pilsu" id="pilsu"/><option value=major>필수</option><option value=major>선택</option>';
+function delRow()
 
-oCell3.innerHTML = '<input type="text" name = "subject"/>';
+{
 
-oCell5.innerHTML = '<input type="text" name = "hak" id="hak"/>';
+dyntbl1.deleteRow(dyntbl1.clickedRowIndex);
 
-oCell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
-oCell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
+}
 
-oCell8.innerHTML='<input type="text" name = "midterm" id="midterm"/>';
+ 
 
-oCell9.innerHTML='<input type="text" name = "final" id="final"/>';
-           
-oCell10.innerHTML='<input type="text" name = "total" id="total"/>';
-           
-oCell11.innerHTML='<input type="text" name = "avg" id="avg"/>';
-           
-oCell12.innerHTML='<input type="text" name = "grade" id="grade"/>';
-         
+function addi()
 
-          }
-        
-          function delete_row() {
-            var my_tbody = document.getElementById('my-tbody');
-            if (my_tbody.rows.length < 1) return;
-            // my_tbody.deleteRow(0); // 상단부터 삭제
-            my_tbody.deleteRow( my_tbody.rows.cl ); // 하단부터 삭제
-          }
-        </script>
-        
+{
+
+i++;
+
+}
+
+ 
+
+/////// 계산해주기///////
+
+function cal(obj)
+
+{
+
+var text1 = document.getElementsByName('text1');
+
+var text2 = document.getElementsByName('text2');
+
+var result= document.getElementsByName('result');
+
+for(var i=0; i<text1.length; i++)
+
+{
+
+if( text1[i]==obj || text2[i]==obj )
+
+{
+
+var text1 = Number(text1[i].value);
+
+var text2 = Number(text2[i].value);
+
+result[i].value = text1 * text2;
+
+break;
+
+}
+
+ 
+
+}
+
+}
+
+</script>
+
 </head>
+
 <body>
-    
+
+<center>
+
+<br>
+
+ 
+
+<table cellpadding='2' cellspacing='0' id='dyntbl1'>
+
+<tr>
+
+<th>
+
+<font color='blue' size='3' face='궁서' > &nbsp; &nbsp; 품 &nbsp; &nbsp; &nbsp; 목 &nbsp; &nbsp;</font>
+
+</th>
+
+<th>
+
+<font color='blue' size='3' face='궁서'>&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; 가 &nbsp;&nbsp; &nbsp; 격 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;</font>
+
+</th>
+
+<th>
+
+<font color='blue' size='3' face='궁서'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 갯 &nbsp; &nbsp; &nbsp; 수 &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;</font>
+
+</th>
+
+<th>
+
+<font color='blue' size='3' face='궁서'>&nbsp; &nbsp;부분 &nbsp; 총 &nbsp; 가격 &nbsp; &nbsp;</font>
+
+</th>
+
+<th>
+
+<input type='button' value=' + ' onClick='addRow()' onclick= 'addi()'>
+
+</th>
+
+</tr>
+
+</table>
+
+ 
+
+</br>
+
+</center>
+
+</form>
+
 </body>
+
 </html>
+
+ 

@@ -5,128 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var oTbl;
+var i = 0;
+var count = 1;
+	
+function insRow() {
+	
+i++;
+count++;
+	  
+oTbl = document.getElementById("addTable");
+var oRow = oTbl.insertRow();
+oRow.onmouseover=function(){oTbl.clickedRowIndex=this.rowIndex};
+	  
+var oCell = oRow.insertCell();
+var frmTag = "<input type='text' name='addText["+i+"]'>";
+
+frmTag += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
+frmTag += "<input type='hidden' name='count' value='"+count+"'>";
+oCell.innerHTML = frmTag;
+}
+
+function removeRow() {
+oTbl.deleteRow(oTbl.clickedRowIndex);
+}
+    </script>
 </head>
 <body>
-    
-    <h1 align="center">Front-end 과제</h1>
-    <h3>1학년</h3>
-   
-    <script>
-        var i =0;
-        text1 =[];
-
-text2 =[];
-
-result =[];
-        function addRow() {
-           var oRow = dyntbl1.insertRow();
-           oRow.onmouseover=function(){dyntbl1.clickedRowIndex=this.rowIndex};
-
-           var cell1 = newRow.insertCell();
-           var cell2 = newRow.insertCell();
-           var cell3 = newRow.insertCell();
-           var cell4 = newRow.insertCell();
-           var cell5 = newRow.insertCell();
-           var cell6 = newRow.insertCell();
-           var cell7 = newRow.insertCell();
-           var cell8 = newRow.insertCell();
-           var cell9 = newRow.insertCell();
-           var cell10 = newRow.insertCell();
-           var cell11 = newRow.insertCell();
-           var cell12 = newRow.insertCell();
-
-           Cell1.innerHTML = '<input type=button name=dyntbl1_delRow value=" X " onClick="delRow()">';
-           cell2.innerHTML = '<select name="esu" id="esu"/><option value=major>전공</option><option value=major>교양</option>';
-           cell3.innerHTML ='<select name="pilsu" id="pilsu"/><option value=major>필수</option><option value=major>선택</option>';
-           cell4.innerHTML='<input type="text" name = "subject"/>';
-           cell5.innerHTML='<input type="text" name = "hak" id="hak"/>';
-           cell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
-           cell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
-           cell8.innerHTML='<input type="text" name = "midterm" id="midterm"/>';
-           cell9.innerHTML='<input type="text" name = "final" id="final"/>';
-           cell10.innerHTML='<input type="text" name = "total" id="total"/>';
-           cell11.innerHTML='<input type="text" name = "avg" id="avg"/>';
-           cell12.innerHTML='<input type="text" name = "grade" id="grade"/>';
-         
-           
-         }
-
-         function delRow()
-
-        {
-
-        dyntbl1.deleteRow(dyntbl1.clickedRowIndex);
-
-        }
-
-        function addi()
-
-        {
-
-        i++;
-
-        }   
-         
-    </script>
-    <input type="button" value="추가" onClick="addRow();"/>
-    <input type=button  value=" 삭제 " onClick="delRow()">
-    <table border="1" id="dyntbl1">
-        <thead>
-        <tr align="center">
-            <td></td>
-            <td>이수</td>
-            <td>필수</td>
-            <td>과목명</td>
-            <td>학점</td>
-            <td>출석점수</td>
-            <td>과제점수</td>
-            <td>중간고사</td>
-            <td>기말고사</td>
-            <td>총점</td>
-            <td>평균</td>
-            <td>성적</td>
+    <form name="form" method="post" action="inviteUserAdd">
+        <table>
+        <tr>
+        <td colspan="2" align="left" bgcolor="#FFFFFF">
+        <table>
+        <tr>
+        <td colspan="5" bgcolor="#FFFFFF" height="25" align="left">
+        <input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="추가">
         </tr>
-        </thead>
-
-        <tbody>
-            <tr align="center" >
-                <td><input type="checkbox" name="checkdelete"></td>
-                <td><select name="esu" id="esu">
-                    <option value="major">전공</option>
-                    <option value="minor">교양</option>
-                </select></td>
-                <td><select name="pilsu" id="pilsu">
-                    <option value="must">필수</option>
-                    <option value="choice">선택</option>
-                </select></td>
-                <td><input type="text" name="subject" id="subject"></td>
-                <td><input type="text" name="hak" id="hak"></td>
-                <td><input type="text" name="attend" id=""></td>
-                <td><input type="text" name="homework" id="homework"></td>
-                <td><input type="text" name="midterm" id="midterm"></td>
-                <td><input type="text" name="final" id="final"></td>
-                <td><input type="text" name="total" id="total"></td>
-                <td><input type="text" name="avg" id="avg"></td>
-                <td><input type="text" name="grade" id="grade"></td>
-
-            </tr>
-            </tbody>
-
-            <tfoot>
-                <tr align="center">
-                    <td></td>
-                    <td colspan="3" align="center">합계</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tfoot>
+        <tr>
+        <td height="25">
+        <table id="addTable" bgcolor="#FFFFFF">
+        <tr>
+        <td><input type="text" name="addText[0]" ></td>
+        <td align="left"></td>
+        </tr>
         </table>
+        </td>
+        </tr>
+        </table>
+        </td>
+        </tr>
+        </table>
+        <table>
+        <tr>
+        <td height="10">
+        </td>
+        </tr>
+        <tr>
+        <td align="center">
+        <input type="submit" name="button" value="확인">
+        </td>
+        </tr>
+        </table>
+        </form>
+         
 </body>
 </html>
