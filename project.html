@@ -54,7 +54,7 @@ oCell3.innerHTML = '<input type="text" name = "subject"/>';
 
 oCell5.innerHTML = '<input type="text" name = "hak"  id="hak"/>';
 
-oCell6.innerHTML='<input type="text" name = "attend" id="attend" onkeyup="cal(this)/>';
+oCell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
 oCell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
 
 oCell8.innerHTML='<input type="text" name = "midterm" id="midterm"/ >';
@@ -91,14 +91,10 @@ i++;
 
  function saveRow(){
 
-    var hak  = document.getElementById('hak').value;
+    hak  = document.getElementById('hak').value;
 
-    for(var i=0; i<hak.lenght; i++){
-        result[i] += hak[i];
-    }
-
-    document.getElementById('result').innerHTML = Number(hak);
-
+    document.getElementById('result').innerHTML = hak;
+    console.log(typeof(hak));
 }
 
 </script>
