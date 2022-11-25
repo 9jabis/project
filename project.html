@@ -1,168 +1,370 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="project.js"></script>
 
-<title>front_end 과제</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
 
-<script>
+        .grade {
+            float: left;
+            margin-left: 15px;
+        }
 
-var i = 0;
-var hak = [];
-var result = 0;
+        .btn-container {
+            float: right;
+            margin-right: 15px;
+        }
 
-function addRow()
+        button {
+            margin-left: 4px;
+        }
 
-{
-var my_tbody = document.getElementById('my_tbody');
-var oRow = my_tbody.insertRow();
+        table.table1 {
+            /* border-collapse: collapse; */
+            text-align: left;
+            line-height: 1.5;
+            border: 1px solid #ccc;
+            margin: 20px 10px;
 
-oRow.onmouseover=function(){grade_1.clickedRowIndex=this.rowIndex};
+        }
 
-var oCell0 = oRow.insertCell();
+        table.table1 thead {
+            text-align: center;
+            border-right: 1px solid #ccc;
+            border-left: 1px solid #ccc;
+            background: #e7708d;
+        }
 
-var oCell1 = oRow.insertCell();
+        table.table1 thead th {
+            padding: 10px;
+            font-weight: bold;
+            vertical-align: top;
+            color: #fff;
+        }
 
-var oCell2 = oRow.insertCell();
+        table.table1 tbody {
+            background: #fcf1f4;
 
-var oCell3 = oRow.insertCell();
+        }
 
-var oCell5 = oRow.insertCell();
+        table.table1 tbody th {
+            text-align: center;
+            width: 150px;
+            padding: 10px;
+            font-weight: bold;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+            /* background: #fcf1f4; */
+        }
 
-var oCell6 = oRow.insertCell();
+        table.table1 td {
+            text-align: center;
+            width: 350px;
+            padding: 10px;
+            vertical-align: top;
+            border-bottom: 1px solid #ccc;
+        }
 
-var oCell7 = oRow.insertCell();
+        .red-color {
+            color: red;
+        }
 
-var oCell8 = oRow.insertCell();
-
-var oCell9 = oRow.insertCell();
-
-var oCell10 = oRow.insertCell();
-
-var oCell11 = oRow.insertCell();
-
-var oCell12= oRow.insertCell();
- 
-oCell0.innerHTML = oCell0.innerHTML = '<input type=button name=grade_1_delRow value=" 삭제 " onClick="delRow()">';
-
-oCell1.innerHTML = '<select name="esu" id="esu"/><option value=major>전공</option><option value=major>교양</option>';
-
-oCell2.innerHTML = '<select name="pilsu" id="pilsu"/><option value=major>필수</option><option value=major>선택</option>';
-
-oCell3.innerHTML = '<input type="text" name = "subject"/>';
-
-oCell5.innerHTML = '<input type="text" name = "hak"  id="hak"/>';
-
-oCell6.innerHTML='<input type="text" name = "attend" id="attend"/>';
-oCell7.innerHTML='<input type="text" name = "homework" id="homework"/>';
-
-oCell8.innerHTML='<input type="text" name = "midterm" id="midterm"/ >';
-
-oCell9.innerHTML='<input type="text" name = "final" id="final"/>';
-           
-oCell10.innerHTML='<input type="text" name = "total" id="total"/>';
-           
-oCell11.innerHTML='<input type="text" name = "avg" id="avg")/>';
-           
-oCell12.innerHTML='<input type="text" name = "grade" id="grade"/>';
-         
-
-}
-
-
-function delRow()
-
-{
-
-grade_1.deleteRow(grade_1.clickedRowIndex);
-
-}
-
- 
-
-function addi()
-
-{
-
-i++;
-
-}
-
- function saveRow(){
-
-    hak  = document.getElementById('hak').value;
-
-    document.getElementById('result').innerHTML = hak;
-    console.log(typeof(hak));
-}
-
-</script>
-
+        #red-color {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
-
-<input type='button' value=' 추가 ' onClick='addRow()'>
-<input type='button' value=' 저장 ' onclick="saveRow()">
-
-<table border="1" id='grade_1'>
-
-	<thead>
-        <tr align="center">
-            <td></td>
-            <td>이수</td>
-            <td>필수</td>
-            <td>과목명</td>
-            <td>학점</td>
-            <td>출석점수</td>
-            <td>과제점수</td>
-            <td>중간고사</td>
-            <td>기말고사</td>
-            <td>총점</td>
-            <td>평균</td>
-            <td>성적</td>
-        </tr>
-        </thead>
-
-        <tbody id="my_tbody">
-            <tr align="center" >
-                <td> <input type=button name=grade_1_delRow value=" 삭제 " onClick="delRow()"></td>
-                <td><select name="esu" id="esu">
-                    <option value="major">전공</option>
-                    <option value="minor">교양</option>
-                </select></td>
-                <td><select name="pilsu" id="pilsu">
-                    <option value="must">필수</option>
-                    <option value="choice">선택</option>
-                </select></td>
-                <td><input type="text" name="subject" id="subject"></td>
-                <td><input type="text" name="hak" id="hak"></td>
-                <td><input type="text" name="attend" id=""></td>
-                <td><input type="text" name="homework" id="homework"></td>
-                <td><input type="text" name="midterm" id="midterm"></td>
-                <td><input type="text" name="final" id="final"></td>
-                <td><input type="text" name="total" id="total"></td>
-                <td><input type="text" name="avg" id="avg"></td>
-                <td><input type="text" name="grade" id="grade"></td>
+    <h1>Front-end 과제</h1>
+    <div class="grade">1학년</div>
+    <div class="btn-container"><button onclick="create(1)">추가</button>
+        <button onclick="del(1)">삭제</button>
+        <button onclick="save(1)">저장</button></div>
+    <br>
+    <table class="table1">
+        <thead>
+            <tr>
+                <th>이수</th>
+                <th>필수</th>
+                <th>과목명</th>
+                <th>학점</th>
+                <th>출석점수</th>
+                <th>과제점수</th>
+                <th>중간고사</th>
+                <th>기말고사</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>성적</th>
+                <th>체크박스</th>
             </tr>
-            </tbody>
+        </thead>
+        <tbody id="grade1">
+            <tr class="grade1_check1">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>P</td>
+                <td><input type="checkbox" id="grade1_check1"></td>
+            </tr>
+            <tr class="grade1_check2">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>2</td>
+                <td>20</td>
+                <td>10</td>
+                <td>22</td>
+                <td>13</td>
+                <td>65</td>
+                <td></td>
+                <td>D+</td>
+                <td><input type="checkbox" id="grade1_check2"></td>
+            </tr>
+            <tr class="grade1_check3">
+                <td>전공</td>
+                <td>필수</td>
+                <td>서버프로그래밍</td>
+                <td>3</td>
+                <td>15</td>
+                <td>18</td>
+                <td>25</td>
+                <td>26</td>
+                <td>84</td>
+                <td></td>
+                <td>B0</td>
+                <td><input type="checkbox" id="grade1_check3"></td>
+            </tr>
+            <tr class="grade1_check4">
+                <td>전공</td>
+                <td>선택</td>
+                <td>소프트웨어공학</td>
+                <td>3</td>
+                <td>20</td>
+                <td>20</td>
+                <td>30</td>
+                <td>30</td>
+                <td>100</td>
+                <td></td>
+                <td>A+</td>
+                <td><input type="checkbox" id="grade1_check4"></td>
+            </tr>
+            <tr id="sum1">
+                <td colspan="3">합계</td>
+                <td>9</td>
+                <td>55</td>
+                <td>48</td>
+                <td>77</td>
+                <td>69</td>
+                <td>249</td>
+                <td>83</td>
+                <td>B0</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="grade">2학년</div>
+    <div class="btn-container"><button onclick="create(2)">추가</button><button onclick="del(2)">삭제</button><button
+            onclick="save(2)">저장</button></div>
+    <br>
+    <table class="table1">
+        <thead>
+            <tr>
+                <th>이수</th>
+                <th>필수</th>
+                <th>과목명</th>
+                <th>학점</th>
+                <th>출석점수</th>
+                <th>과제점수</th>
+                <th>중간고사</th>
+                <th>기말고사</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>성적</th>
+                <th>체크박스</th>
+            </tr>
+        </thead>
+        <tbody id="grade2">
+            <tr class="grade2_check1">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>P</td>
+                <td><input type="checkbox" id="grade2_check1"></td>
+            </tr>
+            <tr class="grade2_check2">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>2</td>
+                <td>20</td>
+                <td>10</td>
+                <td>22</td>
+                <td>13</td>
+                <td>65</td>
+                <td></td>
+                <td>D+</td>
+                <td><input type="checkbox" id="grade2_check2"></td>
+            </tr>
+            <tr class="grade2_check3">
+                <td>전공</td>
+                <td>필수</td>
+                <td>서버프로그래밍</td>
+                <td>3</td>
+                <td>15</td>
+                <td>18</td>
+                <td>25</td>
+                <td>26</td>
+                <td>84</td>
+                <td></td>
+                <td>B0</td>
+                <td><input type="checkbox" id="grade2_check3"></td>
+            </tr>
+            <tr class="grade2_check4">
+                <td>전공</td>
+                <td>선택</td>
+                <td>소프트웨어공학</td>
+                <td>3</td>
+                <td>20</td>
+                <td>20</td>
+                <td>30</td>
+                <td>30</td>
+                <td>100</td>
+                <td></td>
+                <td>A+</td>
+                <td><input type="checkbox" id="grade2_check4"></td>
+            </tr>
+            <tr id="sum2">
+                <td colspan="3">합계</td>
+                <td>9</td>
+                <td>55</td>
+                <td>48</td>
+                <td>77</td>
+                <td>69</td>
+                <td>249</td>
+                <td>83</td>
+                <td>B0</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="grade">3학년</div>
+    <div class="btn-container"><button onclick="create(3)">추가</button><button onclick="del(3)">삭제</button><button
+            onclick="save(3)">저장</button></div>
+    <br>
+    <table class="table1">
+        <thead>
+            <tr>
+                <td>이수</td>
+                <th>필수</th>
+                <th>과목명</th>
+                <th>학점</th>
+                <th>출석점수</th>
+                <th>과제점수</th>
+                <th>중간고사</th>
+                <th>기말고사</th>
+                <th>총점</th>
+                <th>평균</th>
+                <th>성적</th>
+                <th>체크박스</th>
+            </tr>
+        </thead>
+        <tbody id="grade3">
+            <tr class="grade3_check1">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>P</td>
+                <td><input type="checkbox" id="grade3_check1"></td>
+            </tr>
+            <tr class="grade3_check2">
+                <td>교양</td>
+                <td>선택</td>
+                <td>자기소개서 작성</td>
+                <td>2</td>
+                <td>20</td>
+                <td>10</td>
+                <td>22</td>
+                <td>13</td>
+                <td>65</td>
+                <td></td>
+                <td>D+</td>
+                <td><input type="checkbox" id="grade3_check2"></td>
+            </tr>
+            <tr class="grade3_check3">
+                <td>전공</td>
+                <td>필수</td>
+                <td>서버프로그래밍</td>
+                <td>3</td>
+                <td>15</td>
+                <td>18</td>
+                <td>25</td>
+                <td>26</td>
+                <td>84</td>
+                <td></td>
+                <td>B0</td>
+                <td><input type="checkbox" id="grade3_check3"></td>
+            </tr>
+            <tr class="grade3_check4">
+                <td>전공</td>
+                <td>선택</td>
+                <td>소프트웨어공학</td>
+                <td>3</td>
+                <td>20</td>
+                <td>20</td>
+                <td>30</td>
+                <td>30</td>
+                <td>100</td>
+                <td></td>
+                <td>A+</td>
+                <td><input type="checkbox" id="grade3_check4"></td>
+            </tr>
+            <tr id="sum3">
+                <td colspan="3">합계</td>
+                <td>9</td>
+                <td>55</td>
+                <td>48</td>
+                <td>77</td>
+                <td>69</td>
+                <td>249</td>
+                <td>83</td>
+                <td>B0</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
 
-            <tfoot>
-                <tr align="center">
-                    <td></td>
-                    <td colspan="3" align="center">합계</td>
-                    <td><div id='result'></div></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tfoot>
-        </table>
-        </body>
+</script>
 
-</html>
+</html
