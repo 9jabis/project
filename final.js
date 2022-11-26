@@ -67,7 +67,7 @@ function addRow(grade) {
   sum_grade.remove();
 
   const table_body = document.getElementById(`grade${grade}`);
-  const newRow = hTbody.insertRow();
+  const newRow = table_body.insertRow();
   newRow.className = `grade${grade}_check${len}`;
   const newCell = [];
   for (i = 0; i < 12; i++) {
