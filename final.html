@@ -7,17 +7,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="text/javascript" src="final.js"></script>
-
-
 </head>
+<style>
+    h1 {
+        text-align: center;
+    }
 
+    .grade {
+        float: left;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
+    .buttons{
+        margin-left: 1750px;
+    }
+
+    table{
+        text-align: center;
+    }
+
+    table.final thead{
+        background-color: lightcoral;
+    }
+
+    table.final tbody{
+        background-color: lightgoldenrodyellow;
+    }
+
+    table.final th{
+        width : 200px;
+        padding : 5px;
+    }
+
+    table.final td{
+        width: 200px;
+        padding : 5px;
+    }
+</style>
 <body>
-    <h1>Front-end 과제</h1>
+    <h1 align="center">Front-end 과제</h1>
     <div class="grade">1학년</div>
+    <div class="buttons">
         <button onclick="addRow(1)">추가</button>
         <button onclick="deleteRow(1)">삭제</button>
         <button onclick="saveRow(1)">저장</button>
-    <table class="table1" border="1">
+    </div>
+    <table class="final" border="1">
         <thead>
             <tr>
                 <th>이수</th>
@@ -50,12 +86,14 @@
         </tbody>
         
     </table>
-
+    <br>
     <div class="grade">2학년</div>
+    <div class="buttons">
         <button onclick="addRow(2)">추가</button>
         <button onclick="deleteRow(2)">삭제</button>
         <button onclick="saveRow(2)">저장</button>
-    <table class="table1" border="1">
+    </div>
+    <table class="final" border="1">
         <thead>
             <tr>
                 <th>이수</th>
@@ -87,12 +125,14 @@
             </tr>
         </tbody>
     </table>
-
+    <br>
     <div class="grade">3학년</div>
+    <div class="buttons">
         <button onclick="addRow(3)">추가</button>
         <button onclick="deleteRow(3)">삭제</button>
         <button onclick="saveRow(3)">저장</button>
-    <table class="table1" border="1">
+    </div>
+    <table class="final" border="1">
         <thead>
             <tr>
                 <th>이수</th>

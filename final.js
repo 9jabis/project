@@ -1,10 +1,10 @@
 function addRow(grade) {
-    
-  let i = 0;
-  let sum = 0;
-  let list = {};
+  const len = document.getElementById(`grade${grade}`).getElementsByTagName("tr").length;
+  //tbody의 길이
+  var i = 0;
+  var sum = 0;
+  var list = {};  //리스트를 만들어 prompt의 입력을 넣는다.
 
-  
   list.esu = prompt("[전공/교양]만 입력해주세요");
   while(true)
   if(list.esu == "전공" || list.esu =="교양"){
@@ -65,44 +65,52 @@ function addRow(grade) {
 
   sum_grade = document.getElementById(`sum${grade}`);
   sum_grade.remove();
+
   const table_body = document.getElementById(`grade${grade}`);
-  const newRow = table_body.insertRow();
+  const newRow = hTbody.insertRow();
+  newRow.className = `grade${grade}_check${len}`;
   const newCell = [];
   for (i = 0; i < 12; i++) {
     newCell[i] = newRow.insertCell();
   }
   for (i = 0; i < Object.values(list).length; i++) {
     newCell[i].appendChild(document.createTextNode(Object.values(list)[i]));
-    if (i >= 4) sum += Number(Object.values(list)[i]);  //학점부터 계산
+    if (i >= 4) sum += Number(Object.values(list)[i]);
   }
+
+  var check = document.createElement("input");
+  check.setAttribute("type", "checkbox");
+  check.id = `grade${grade}_check${len}`;
+  newCell[11].appendChild(check);
+  
   if (sum != 0) {
-    newCell[8].appendChild(document.createTextNode(sum));
-    if (sum >= 95) {
-      newCell[10].appendChild(document.createTextNode("A+"));
-    } else if (sum >= 90) {
-      newCell[10].appendChild(document.createTextNode("A0"));
-    } else if (sum >= 85) {
-      newCell[10].appendChild(document.createTextNode("B+"));
-    } else if (sum >= 80) {
-      newCell[10].appendChild(document.createTextNode("B0"));
-    } else if (sum >= 75) {
-      newCell[10].appendChild(document.createTextNode("C+"));
-    } else if (sum >= 70) {
-      newCell[10].appendChild(document.createTextNode("C0"));
-    } else if (sum >= 65) {
-      newCell[10].appendChild(document.createTextNode("D+"));
-    } else if (sum >= 60) {
-      newCell[10].appendChild(document.createTextNode("D0"));
+      newCell[8].appendChild(document.createTextNode(sum));
+      if (sum >= 95) {
+        newCell[10].appendChild(document.createTextNode("A+"));
+      } else if (sum >= 90) {
+        newCell[10].appendChild(document.createTextNode("A0"));
+      } else if (sum >= 85) {
+        newCell[10].appendChild(document.createTextNode("B+"));
+      } else if (sum >= 80) {
+        newCell[10].appendChild(document.createTextNode("B0"));
+      } else if (sum >= 75) {
+        newCell[10].appendChild(document.createTextNode("C+"));
+      } else if (sum >= 70) {
+        newCell[10].appendChild(document.createTextNode("C0"));
+      } else if (sum >= 65) {
+        newCell[10].appendChild(document.createTextNode("D+"));
+      } else if (sum >= 60) {
+        newCell[10].appendChild(document.createTextNode("D0"));
+      } else {
+        newCell[10].appendChild(document.createTextNode("F"));
+        newCell[10].style.color = "red";
+      }
     } else {
-      newCell[10].appendChild(document.createTextNode("F"));
-      newCell[10].style.color = "red";
+      newCell[10].appendChild(document.createTextNode("P"));
     }
-  } else {
-    newCell[10].appendChild(document.createTextNode("P"));
-  }
 
 
-  const sumRow = table_body.insertRow();  //합계
+  const sumRow = table_body.insertRow(); //이부분은 save로
   sumRow.id = `sum${grade}`;
   const sumCell = [];
   for (i = 0; i < 10; i++) {
@@ -112,11 +120,6 @@ function addRow(grade) {
       sumCell[i].appendChild(document.createTextNode("합계"));
     }
   }
-
-
-  var check = document.createElement("input");
-  check.setAttribute("type", "checkbox");
-  newCell[11].appendChild(check);
 }
 
 function deleteRow(grade) {
@@ -133,7 +136,6 @@ function deleteRow(grade) {
     }
   }
 }
-
 
 function saveRow(grade) {
   sum_grade = document.getElementById(`sum${grade}`);
@@ -153,9 +155,7 @@ function saveRow(grade) {
         result = 0;
         result = Number(
           document
-            .getElementById(`grade${grade}`)
-            .getElementsByTagName("tr")
-            [j].getElementsByTagName("td")[k].innerHTML
+            .getElementById(`grade${grade}`).getElementsByTagName("tr")[j].getElementsByTagName("td")[k].innerHTML
         );
         sum_list[k - 3] += result;
       } else if (k == 10) {
@@ -163,9 +163,7 @@ function saveRow(grade) {
           .getElementById(`grade${grade}`)
           .getElementsByTagName("tr")
           [j].getElementsByTagName("td")[k].innerHTML;
-        // 비지 않으면 count인데  0점도 고려
         if (result != "P") cnt += 1;
-        // cnt += 1; // 패논패가 아님에도 모든 점수가  0점일떄도 count하게 되지만 그런 입력은 없다고 가정
       }
     }
   }

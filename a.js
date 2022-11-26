@@ -4,15 +4,64 @@ function create(grade) {
       .getElementsByTagName("tr").length;
     var i = 0;
     var sum = 0;
-    var list = {}; //Completion, Required, Course Name, Credit, Attendance, Assignment, Midterm, Final
-    list.comp = prompt("이수구분[전공/교양]을 입력해주세요 : ");
-    list.required = prompt("필수구분[선택/필수]를 입력해주세요 : ");
-    list.name = prompt("과목명을 입력해주세요 : ");
-    list.credit = prompt("학점을 입력해주세요 : ");
-    list.attd = prompt("출석 점수를 입력해주세요 : ");
-    list.assg = prompt("과제 점수를 입력해주세요 : ");
-    list.mid = prompt("중간고사 점수를 입력해주세요 : ");
-    list.final = prompt("기말고사 점수를 입력해주세요 : ");
+    var list = {};
+    list.esu = prompt("[전공/교양]만 입력해주세요");
+    while(true)
+    if(list.esu == "전공" || list.esu =="교양"){
+      break;
+    } else{
+      list.esu = prompt("[전공/교양]만 입력해주세요");
+    }
+    
+    list.pilsu = prompt("[필수/선택]만 입력해주세요");
+    while(true)
+    if(list.pilsu == "필수" || list.pilsu =="선택"){
+      break;
+    } else{
+      list.pilsu = prompt("[필수/선택]만 입력해주세요");
+    }
+    
+    list.subject = prompt("과목명");
+  
+    list.hak = prompt("학점(1,2,3만 입력해주세요)");
+    while(true)
+    if(list.hak == "1" || list.hak =="2" || list.hak =="3"){
+      break;
+    } else{
+      list.hak = prompt("학점(1,2,3만 입력해주세요)");
+    }
+    
+    list.attend = prompt("출석점수(숫자만 입력해주세요)");
+    while(true)
+    if(isNaN(list.attend)){
+      list.attend = prompt("출석점수(숫자만 입력해주세요)");
+    } else{
+      break;
+    }
+  
+    list.homework = prompt("과제점수(숫자만 입력해주세요");
+    while(true)
+    if(isNaN(list.homework)){
+      list.homework = prompt("과제점수(숫자만 입력해주세요)");
+    } else{
+      break;
+    }
+  
+    list.mid = prompt("중간고사(숫자만 입력해주세요)");
+    while(true)
+    if(isNaN(list.mid)){
+      list.mid = prompt("중간고사(숫자만 입력해주세요)");
+    } else{
+      break;
+    }
+  
+    list.final = prompt("기말고사 ");
+    while(true)
+    if(isNaN(list.final)){
+      list.final = prompt("출석점수(숫자만 입력해주세요)");
+    } else{
+      break;
+    }
   
     sum_grade = document.getElementById(`sum${grade}`);
     sum_grade.remove();
@@ -32,34 +81,32 @@ function create(grade) {
     check.id = `grade${grade}_check${len}`;
     newCell[11].appendChild(check);
     if (sum != 0) {
-      newCell[8].appendChild(document.createTextNode(sum));
-      if (sum >= 95) {
-        newCell[10].appendChild(document.createTextNode("A+"));
-      } else if (sum >= 90) {
-        newCell[10].appendChild(document.createTextNode("A0"));
-      } else if (sum >= 85) {
-        newCell[10].appendChild(document.createTextNode("B+"));
-      } else if (sum >= 80) {
-        newCell[10].appendChild(document.createTextNode("B0"));
-      } else if (sum >= 75) {
-        newCell[10].appendChild(document.createTextNode("C+"));
-      } else if (sum >= 70) {
-        newCell[10].appendChild(document.createTextNode("C0"));
-      } else if (sum >= 65) {
-        newCell[10].appendChild(document.createTextNode("D+"));
-      } else if (sum >= 60) {
-        newCell[10].appendChild(document.createTextNode("D0"));
+        newCell[8].appendChild(document.createTextNode(sum));
+        if (sum >= 95) {
+          newCell[10].appendChild(document.createTextNode("A+"));
+        } else if (sum >= 90) {
+          newCell[10].appendChild(document.createTextNode("A0"));
+        } else if (sum >= 85) {
+          newCell[10].appendChild(document.createTextNode("B+"));
+        } else if (sum >= 80) {
+          newCell[10].appendChild(document.createTextNode("B0"));
+        } else if (sum >= 75) {
+          newCell[10].appendChild(document.createTextNode("C+"));
+        } else if (sum >= 70) {
+          newCell[10].appendChild(document.createTextNode("C0"));
+        } else if (sum >= 65) {
+          newCell[10].appendChild(document.createTextNode("D+"));
+        } else if (sum >= 60) {
+          newCell[10].appendChild(document.createTextNode("D0"));
+        } else {
+          newCell[10].appendChild(document.createTextNode("F"));
+          newCell[10].style.color = "red";
+        }
       } else {
-        // const newElement = document.createTextNode("F");
-        // newElement.className = "red-color";
-        // newElement.id = "red-color";
-        // newCell[10].appendChild(newElement);
-        newCell[10].appendChild(document.createTextNode("F"));
-        newCell[10].id = "red-color";
+        newCell[10].appendChild(document.createTextNode("P"));
       }
-    } else {
-      newCell[10].appendChild(document.createTextNode("P"));
-    }
+
+
     const sumRow = hTbody.insertRow(); //이부분은 save로
     sumRow.id = `sum${grade}`;
     const sumCell = [];
@@ -88,24 +135,11 @@ function create(grade) {
   }
   
   function save(grade) {
-    // 합계테이블 삭제 #sum1~3 후 계산해서 다시 생성
     sum_grade = document.getElementById(`sum${grade}`);
     sum_grade.remove();
-    // 합계줄 계산
-    //   Credit, Attendance, Assignment, Midterm, Final
-    var [
-      result,
-      cnt,
-      i,
-      j,
-      k,
-      sum_credit,
-      sum_attd,
-      sum_assg,
-      sum_mid,
-      sum_final,
-    ] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    var sum_list = [sum_credit, sum_attd, sum_assg, sum_mid, sum_final];
+  
+    let [result, cnt, i, j, k, sum_hak, sum_attend, sum_homework, sum_mid, sum_final] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let sum_list = [sum_hak, sum_attend, sum_homework, sum_mid, sum_final];
   
     for (
       j = 0;
@@ -135,8 +169,8 @@ function create(grade) {
       }
     }
   
-    const hTbody = document.getElementById(`grade${grade}`);
-    const sumRow = hTbody.insertRow(); //이부분은 save로
+    const table_body = document.getElementById(`grade${grade}`);
+    const sumRow = table_body.insertRow(); //이부분은 save로
     sumRow.id = `sum${grade}`;
     const sumCell = [];
     for (i = 0; i < 10; i++) {
@@ -179,7 +213,7 @@ function create(grade) {
           sumCell[i].appendChild(document.createTextNode("D0"));
         } else {
           sumCell[i].appendChild(document.createTextNode("F"));
-          sumCell[i].id = "red-color";
+          sumCell[i].style.color = "red";
         }
       }
     }
