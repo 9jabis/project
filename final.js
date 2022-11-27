@@ -1,9 +1,9 @@
 function addRow(grade) {
-  const len = document.getElementById(`grade${grade}`).getElementsByTagName("tr").length;
-  //tbody의 길이
+  
   var i = 0;
   var sum = 0;
   var list = {};  //리스트를 만들어 prompt의 입력을 넣는다.
+  const len = document.getElementById(`grade${grade}`).getElementsByTagName("tr").length;
 
   list.esu = prompt("[전공/교양]만 입력해주세요");
   while(true)
@@ -65,11 +65,11 @@ function addRow(grade) {
 
   sum_grade = document.getElementById(`sum${grade}`);
   sum_grade.remove();
-
   const table_body = document.getElementById(`grade${grade}`);
   const newRow = table_body.insertRow();
-  newRow.className = `grade${grade}_check${len}`;
+  newRow.className = `grade${grade}_checked${len}`;
   const newCell = [];
+
   for (i = 0; i < 12; i++) {
     newCell[i] = newRow.insertCell();
   }
@@ -77,11 +77,6 @@ function addRow(grade) {
     newCell[i].appendChild(document.createTextNode(Object.values(list)[i]));
     if (i >= 4) sum += Number(Object.values(list)[i]);
   }
-
-  var check = document.createElement("input");
-  check.setAttribute("type", "checkbox");
-  check.id = `grade${grade}_check${len}`;
-  newCell[11].appendChild(check);
   
   if (sum != 0) {
       newCell[8].appendChild(document.createTextNode(sum));
@@ -109,111 +104,98 @@ function addRow(grade) {
       newCell[10].appendChild(document.createTextNode("P"));
     }
 
+    var check = document.createElement("input");
+    check.setAttribute("type", "checkbox");
+    check.id = `grade${grade}_checked${len}`;
+    newCell[11].appendChild(check);
 
-  const sumRow = table_body.insertRow(); //이부분은 save로
-  sumRow.id = `sum${grade}`;
-  const sumCell = [];
-  for (i = 0; i < 10; i++) {
-    sumCell[i] = sumRow.insertCell();
-    if (i == 0) {
-      sumCell[i].colSpan = 3;
-      sumCell[i].appendChild(document.createTextNode("합계"));
+    const resultRow = table_body.insertRow();
+    resultRow.id = `sum${grade}`;
+    const resultCell = [];
+    for (i = 0; i < 10; i++) {
+      resultCell[i] = resultRow.insertCell();
+      if (i == 0) {
+      resultCell[i].colSpan = 3;
+      resultCell[i].appendChild(document.createTextNode("합계"));
     }
   }
 }
 
-function deleteRow(grade) {
-  // sum_grade = document.getElementById(`sum${grade}`);
-  // sum_grade.remove();
-  var i = 0;
-
-  var checkbox = document.getElementsByTagName("input");
-  for (i = 0; i < checkbox.length; i++) {
-    if (checkbox[i].checked) {
-      console.log(checkbox[i].id);
-      var del = document.getElementsByClassName(checkbox[i].id)[0];
-      del.remove();
-    }
+ function deleteRow(grade) {
+var checkbox = document.getElementsByTagName("input");
+for (let i = 0; i < checkbox.length; i++) {
+  if (checkbox[i].checked == true) {
+    checkbox[i].parentElement.parentElement.remove();
   }
+}
+
 }
 
 function saveRow(grade) {
   sum_grade = document.getElementById(`sum${grade}`);
   sum_grade.remove();
 
-  let [result, cnt, i, j, k, sum_hak, sum_attend, sum_homework, sum_mid, sum_final] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let [result, count, i, j, k, sum_hak, sum_attend, sum_homework, sum_mid, sum_final] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   let sum_list = [sum_hak, sum_attend, sum_homework, sum_mid, sum_final];
 
-  for (
-    j = 0;
-    j <
-    document.getElementById(`grade${grade}`).getElementsByTagName("tr").length;
-    j++
-  ) {
+  for (j = 0; j < document.getElementById(`grade${grade}`).getElementsByTagName("tr").length;  j++) {
     for (k = 3; k < 11; k++) {
       if (k < 8) {
         result = 0;
         result = Number(
-          document
-            .getElementById(`grade${grade}`).getElementsByTagName("tr")[j].getElementsByTagName("td")[k].innerHTML
+          document.getElementById(`grade${grade}`).getElementsByTagName("tr")[j].getElementsByTagName("td")[k].innerHTML
         );
         sum_list[k - 3] += result;
       } else if (k == 10) {
-        result = document
-          .getElementById(`grade${grade}`)
-          .getElementsByTagName("tr")
-          [j].getElementsByTagName("td")[k].innerHTML;
-        if (result != "P") cnt += 1;
+        result = document.getElementById(`grade${grade}`).getElementsByTagName("tr")[j].getElementsByTagName("td")[k].innerHTML;
+        if (result != "P") count += 1;
       }
     }
   }
 
   const table_body = document.getElementById(`grade${grade}`);
-  const sumRow = table_body.insertRow(); //이부분은 save로
-  sumRow.id = `sum${grade}`;
-  const sumCell = [];
+  const resultRow = table_body.insertRow();
+  resultRow.id = `sum${grade}`;
+  const resultCell = [];
   for (i = 0; i < 10; i++) {
-    sumCell[i] = sumRow.insertCell();
+    resultCell[i] = resultRow.insertCell();
     if (i == 0) {
-      sumCell[i].colSpan = 3;
-      sumCell[i].appendChild(document.createTextNode("합계"));
+      resultCell[i].colSpan = 3;
+      resultCell[i].appendChild(document.createTextNode("합계"));
     } else if (0 <= i && i < 6) {
-      sumCell[i].appendChild(document.createTextNode(sum_list[i - 1]));
+      resultCell[i].appendChild(document.createTextNode(sum_list[i - 1]));
     } else if (i == 6) {
-      //총점
-      var sum_sum_list = sum_list;
-      sum_sum_list.shift();
-      sum_sum_list = sum_sum_list.reduce((add, currValue) => {
-        return add + currValue;
+      var final_sum = sum_list;
+      final_sum.shift(); //맨 앞 값 제거
+      final_sum = final_sum.reduce((plus, now_Value) => {  //누적값 계산
+        return plus + now_Value;
       }, 0);
-      sumCell[i].appendChild(document.createTextNode(sum_sum_list));
+      resultCell[i].appendChild(document.createTextNode(final_sum));
     } else if (i == 7) {
-      //평균
-      sumCell[i].appendChild(
-        document.createTextNode(Math.round(sum_sum_list / cnt))
-      );
+      resultCell[i].appendChild(document.createTextNode(Math.round(final_sum / count)));
     } else if (i == 8) {
-      //성적
-      if (Math.round(sum_sum_list / cnt) >= 95) {
-        sumCell[i].appendChild(document.createTextNode("A+"));
-      } else if (Math.round(sum_sum_list / cnt) >= 90) {
-        sumCell[i].appendChild(document.createTextNode("A0"));
-      } else if (Math.round(sum_sum_list / cnt) >= 85) {
-        sumCell[i].appendChild(document.createTextNode("B+"));
-      } else if (Math.round(sum_sum_list / cnt) >= 80) {
-        sumCell[i].appendChild(document.createTextNode("B0"));
-      } else if (Math.round(sum_sum_list / cnt) >= 75) {
-        sumCell[i].appendChild(document.createTextNode("C+"));
-      } else if (Math.round(sum_sum_list / cnt) >= 70) {
-        sumCell[i].appendChild(document.createTextNode("C0"));
-      } else if (Math.round(sum_sum_list / cnt) >= 65) {
-        sumCell[i].appendChild(document.createTextNode("D+"));
-      } else if (Math.round(sum_sum_list / cnt) >= 60) {
-        sumCell[i].appendChild(document.createTextNode("D0"));
+      if (Math.round(final_sum / count) >= 95) {
+        resultCell[i].appendChild(document.createTextNode("A+"));
+      } else if (Math.round(final_sum / count) >= 90) {
+        resultCell[i].appendChild(document.createTextNode("A0"));
+      } else if (Math.round(final_sum / count) >= 85) {
+        resultCell[i].appendChild(document.createTextNode("B+"));
+      } else if (Math.round(final_sum / count) >= 80) {
+        resultCell[i].appendChild(document.createTextNode("B0"));
+      } else if (Math.round(final_sum / count) >= 75) {
+        resultCell[i].appendChild(document.createTextNode("C+"));
+      } else if (Math.round(final_sum / count) >= 70) {
+        resultCell[i].appendChild(document.createTextNode("C0"));
+      } else if (Math.round(final_sum / count) >= 65) {
+        resultCell[i].appendChild(document.createTextNode("D+"));
+      } else if (Math.round(final_sum / count) >= 60) {
+        resultCell[i].appendChild(document.createTextNode("D0"));
       } else {
-        sumCell[i].appendChild(document.createTextNode("F"));
-        sumCell[i].style.color = "red";
+        resultCell[i].appendChild(document.createTextNode("F"));
+        resultCell[i].style.color = "red";
       }
     }
   }
+
+
 }
