@@ -63,8 +63,9 @@ function addRow(grade) {
     break;
   }
 
-  sum_grade = document.getElementById(`sum${grade}`);
-  sum_grade.remove();
+  result_grade = document.getElementById(`sum${grade}`);
+  result_grade.remove();
+
   const table_body = document.getElementById(`grade${grade}`);
   const newRow = table_body.insertRow();
   newRow.className = `grade${grade}_checked${len}`;
@@ -132,8 +133,8 @@ for (let i = 0; i < checkbox.length; i++) {
 }
 
 function saveRow(grade) {
-  sum_grade = document.getElementById(`sum${grade}`);
-  sum_grade.remove();
+  result_grade = document.getElementById(`sum${grade}`);
+  result_grade.remove();
 
   let [result, count, i, j, k, sum_hak, sum_attend, sum_homework, sum_mid, sum_final] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   let sum_list = [sum_hak, sum_attend, sum_homework, sum_mid, sum_final];
